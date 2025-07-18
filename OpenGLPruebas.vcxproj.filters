@@ -16,6 +16,9 @@
     <Filter Include="Source Files\Utils">
       <UniqueIdentifier>{ff149827-8030-4c37-bf6f-fb489d472366}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Shaders">
+      <UniqueIdentifier>{6b2228d8-6cd6-44bf-a978-3ad8bf990906}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -32,5 +35,13 @@
     <ClInclude Include="logger.h">
       <Filter>Source Files\Utils</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="default.vert">
+      <Filter>Source Files\Shaders</Filter>
+    </None>
+    <None Include="default.frag">
+      <Filter>Source Files\Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>
