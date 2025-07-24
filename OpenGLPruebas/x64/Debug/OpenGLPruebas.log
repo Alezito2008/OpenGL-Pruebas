@@ -1,3 +1,5 @@
 ﻿  Main.cpp
-C:\Users\Alezito2008\OneDrive\Documentos\Programacion\Pruebas\OpenGL\OpenGLPruebas\Main.cpp(176,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Alezito2008\OneDrive\Documentos\Programacion\Pruebas\OpenGL\OpenGLPruebas\Main.cpp(100,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Alezito2008\OneDrive\Documentos\Programacion\Pruebas\OpenGL\OpenGLPruebas\Main.cpp(50,7): warning C4101: 'infoLog': unreferenced local variable
+C:\Users\Alezito2008\OneDrive\Documentos\Programacion\Pruebas\OpenGL\OpenGLPruebas\Main.cpp(49,6): warning C4101: 'success': unreferenced local variable
   OpenGLPruebas.vcxproj -> C:\Users\Alezito2008\OneDrive\Documentos\Programacion\Pruebas\OpenGL\OpenGLPruebas\x64\Debug\OpenGLPruebas.exe

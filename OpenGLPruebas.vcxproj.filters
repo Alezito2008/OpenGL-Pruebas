@@ -30,17 +30,26 @@
     <ClCompile Include="logger.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="logger.h">
       <Filter>Source Files\Utils</Filter>
     </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="default.vert">
+    <None Include="triangles.vert">
       <Filter>Source Files\Shaders</Filter>
     </None>
-    <None Include="default.frag">
+    <None Include="triangle1.frag">
+      <Filter>Source Files\Shaders</Filter>
+    </None>
+    <None Include="triangle2.frag">
       <Filter>Source Files\Shaders</Filter>
     </None>
   </ItemGroup>
