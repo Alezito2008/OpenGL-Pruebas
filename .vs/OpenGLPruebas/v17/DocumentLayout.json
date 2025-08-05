@@ -7,16 +7,8 @@
       "RelativeMoniker": "D:0:0:{7C6DC27F-B4B4-473B-BCB6-8EF03C815727}|OpenGLPruebas.vcxproj|solutionrelative:Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7C6DC27F-B4B4-473B-BCB6-8EF03C815727}|OpenGLPruebas.vcxproj|C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\texture.vert||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{7C6DC27F-B4B4-473B-BCB6-8EF03C815727}|OpenGLPruebas.vcxproj|solutionrelative:texture.vert||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{7C6DC27F-B4B4-473B-BCB6-8EF03C815727}|OpenGLPruebas.vcxproj|C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\texture.frag||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{7C6DC27F-B4B4-473B-BCB6-8EF03C815727}|OpenGLPruebas.vcxproj|solutionrelative:texture.frag||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7C6DC27F-B4B4-473B-BCB6-8EF03C815727}|OpenGLPruebas.vcxproj|C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\default.frag||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{7C6DC27F-B4B4-473B-BCB6-8EF03C815727}|OpenGLPruebas.vcxproj|solutionrelative:default.frag||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
   ],
   "DocumentGroupContainers": [
@@ -36,7 +28,7 @@
               "RelativeDocumentMoniker": "Main.cpp",
               "ToolTip": "C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\Main.cpp",
               "RelativeToolTip": "Main.cpp",
-              "ViewState": "AQIAACcAAAAAAAAAAAAAADsAAAAmAAAA",
+              "ViewState": "AQIAAFQAAAAAAAAAAAAAAGwAAABKAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-07-18T00:51:39.058Z",
               "IsPinned": true,
@@ -44,41 +36,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "texture.frag",
               "DocumentMoniker": "C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\texture.frag",
               "RelativeDocumentMoniker": "texture.frag",
               "ToolTip": "C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\texture.frag",
               "RelativeToolTip": "texture.frag",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAqAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-07-24T20:41:50.505Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "texture.vert",
-              "DocumentMoniker": "C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\texture.vert",
-              "RelativeDocumentMoniker": "texture.vert",
-              "ToolTip": "C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\texture.vert",
-              "RelativeToolTip": "texture.vert",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-07-24T20:39:31.659Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "default.frag",
-              "DocumentMoniker": "C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\default.frag",
-              "RelativeDocumentMoniker": "default.frag",
-              "ToolTip": "C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\default.frag",
-              "RelativeToolTip": "default.frag",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-07-24T20:19:49.617Z",
+              "WhenOpened": "2025-08-05T01:26:06.677Z",
               "EditorCaption": ""
             }
           ]

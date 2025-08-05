@@ -68,6 +68,8 @@ int main() {
 
 	// -- Parte de las texturas --
 
+	stbi_set_flip_vertically_on_load(true);
+
 	// Repetición
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
@@ -92,9 +94,24 @@ int main() {
 		glGenerateMipmap(GL_TEXTURE_2D);
 	}
 	else {
-		std::cout << "Error al cargar las texturas" << std::endl;
+		std::cout << "Error al cargar textura1" << std::endl;
 	}
 	stbi_image_free(data);
+
+	// TEXTURA 2
+	data = stbi_load("awesomeface.png", &img_width, &img_height, &nrChannels, 0);
+
+	unsigned int texture2;
+	glGenTextures(1, &texture2);
+
+	glBindTexture(GL_TEXTURE_2D, texture2);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, img_width, img_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else {
+		std::cout << "Error al cargar textura2" << std::endl;
+	}
 
 	// -- Las cositas de los vertices --
 
@@ -125,10 +142,18 @@ int main() {
 
 		// primer triangulo
 		shaderTextura.use();
+
+		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, texture);
+		glActiveTexture(GL_TEXTURE1);
+		glBindTexture(GL_TEXTURE_2D, texture2);
+
 		glBindVertexArray(VAO);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+		glUniform1i(glGetUniformLocation(shaderTextura.ID, "textura1"), 0);
+		glUniform1i(glGetUniformLocation(shaderTextura.ID, "textura2"), 1);
 
 		glfwPollEvents();
 		glfwSwapBuffers(window);
