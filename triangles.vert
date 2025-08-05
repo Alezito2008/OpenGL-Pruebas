@@ -7,7 +7,6 @@ out vec3 vertexColor;
 uniform float offsetX;
 
 void main() {
-	vec3 newPos = aPos * -1.0f;
-	gl_Position = vec4(newPos.x + offsetX, newPos.y, newPos.z, 1.0);
+	gl_Position = vec4(aPos.x + offsetX, aPos.yz, 1.0);
 	vertexColor = aColor;
 }

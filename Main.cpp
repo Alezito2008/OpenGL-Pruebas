@@ -4,6 +4,8 @@
 #include "logger.h"
 #include "Shader.h"
 
+#include <stb/stb_image.h>
+
 void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
 	glViewport(0, 0, width, height);
 }
@@ -24,7 +26,7 @@ int main() {
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	// Crear ventana de 800x800 llamada "Pruebas"
-	GLFWwindow* window = glfwCreateWindow(800, 800, "Pruebas", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(1000, 1000, "Pruebas", NULL, NULL);
 	// Si no se pudo crear, terminar
 	if (window == NULL) {
 		logger.error("No se pudo crear la ventana");
@@ -41,7 +43,8 @@ int main() {
 	gladLoadGL();
 
 	// Especificar el viewport
-	glViewport(0, 0, 800, 800);
+	glViewport(0, 0, 1000, 1000);
+
 	// glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 	// -- Creación de shaders -- //
@@ -49,44 +52,70 @@ int main() {
 	int success;
 	char infoLog[512];
 
-	float firstTriangle[] = {
-		// primer triangulo
-		0.5f, 0.5f, 0.0f,
-		0.5f, -0.5f, 0.0f,
-		-0.5f, -0.5f, 0.0f,
+	Shader shaderTextura = Shader("texture.vert", "texture.frag");
+
+	float vertices[] = {
+		-0.5f, -0.5f, /* abajo izquierda */ 0.0f, 0.0f,
+		0.5f, -0.5f, /* abajo derecha* */ 1.0f, 0.0f,
+		0.5f, 0.5f, /* arriba derecha */ 1.0f, 1.0f,
+		-0.5f, 0.5f, /* arriba izquierda */ 0.0f, 1.0f
 	};
 
-	float secondTriangle[] = {
-		// segundo triangulo
-		-0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 0.0f,
-		0.6f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f,
-		-0.4f, -0.3f, 0.0f, 0.0f, 0.0f, 1.0f
+	unsigned int indices[] = {
+		0, 1, 2, // primer triangulo (arriba derecha)
+		2, 3, 0, // segundo triangulo (abajo izquierda)
 	};
 
-	Shader shaderPulso("triangles.vert", "triangle1.frag");
-	Shader shaderArcoiris("triangles.vert", "triangle2.frag");
+	// -- Parte de las texturas --
 
-	unsigned int VAOs[2], VBOs[2];
+	// Repetición
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	// Filtros
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_LINEAR);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-	glGenVertexArrays(2, VAOs);
-	glGenBuffers(2, VBOs);
+	// Importar imagen
+	// ---------------
 
-	glBindVertexArray(VAOs[0]);
-	glBindBuffer(GL_ARRAY_BUFFER, VBOs[0]);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(firstTriangle), firstTriangle, GL_STATIC_DRAW);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+	int img_width, img_height, nrChannels;
+	unsigned char* data = stbi_load("container.jpg", &img_width, &img_height, &nrChannels, 0);
+
+	// Ahora si se crea la textura
+
+	unsigned int texture;
+	glGenTextures(1, &texture);
+
+	glBindTexture(GL_TEXTURE_2D, texture);
+	if (data) {
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, img_width, img_height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else {
+		std::cout << "Error al cargar las texturas" << std::endl;
+	}
+	stbi_image_free(data);
+
+	// -- Las cositas de los vertices --
+
+	unsigned int VAO, VBO, EBO;
+	glGenVertexArrays(1, &VAO);
+	glGenBuffers(1, &VBO);
+	glGenBuffers(1, &EBO);
+
+	glBindVertexArray(VAO);
+
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
 
-	glBindVertexArray(VAOs[1]);
-	glBindBuffer(GL_ARRAY_BUFFER, VBOs[1]);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(secondTriangle), secondTriangle, GL_STATIC_DRAW);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
-	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
 	glEnableVertexAttribArray(1);
-
-	glBindVertexArray(0);
-
 
 	while (!glfwWindowShouldClose(window)) {
 		processInput(window);
@@ -95,22 +124,11 @@ int main() {
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		// primer triangulo
-		shaderPulso.use();
-
-		float timeValue = glfwGetTime();
-		float greenValue = (sin(timeValue * 2.0f) / 2.0f) + 0.5f;
-		int miColorLocation = glGetUniformLocation(shaderPulso.ID, "miColor");
-		shaderPulso.setFloat("offsetX", greenValue);
-
-		glUniform4f(miColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
-
-		glBindVertexArray(VAOs[0]);
-		glDrawArrays(GL_TRIANGLES, 0, 3);
-		// segundo triangulo
-		shaderArcoiris.use();
-
-		glBindVertexArray(VAOs[1]);
-		glDrawArrays(GL_TRIANGLES, 0, 3);
+		shaderTextura.use();
+		glBindTexture(GL_TEXTURE_2D, texture);
+		glBindVertexArray(VAO);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
 		glfwPollEvents();
 		glfwSwapBuffers(window);
@@ -121,6 +139,6 @@ int main() {
 	// Terminar OpenGL
 	glfwTerminate();
 
-	
+
 	return 0;
 }
