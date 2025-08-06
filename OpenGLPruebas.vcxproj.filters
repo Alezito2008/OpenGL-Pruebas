@@ -16,15 +16,15 @@
     <Filter Include="Source Files\Utils">
       <UniqueIdentifier>{ff149827-8030-4c37-bf6f-fb489d472366}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Shaders">
-      <UniqueIdentifier>{6b2228d8-6cd6-44bf-a978-3ad8bf990906}</UniqueIdentifier>
+    <Filter Include="res">
+      <UniqueIdentifier>{de413436-e1db-413e-a16e-bfddea4bfaaa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="res\shaders">
+      <UniqueIdentifier>{bd44fce1-4a73-42fe-9194-b505b1dad792}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="logger.cpp">
@@ -36,6 +36,12 @@
     <ClCompile Include="stb_image_loader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="logger.h">
@@ -44,28 +50,31 @@
     <ClInclude Include="Shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="triangles.vert">
-      <Filter>Source Files\Shaders</Filter>
-    </None>
-    <None Include="triangle1.frag">
-      <Filter>Source Files\Shaders</Filter>
-    </None>
-    <None Include="triangle2.frag">
-      <Filter>Source Files\Shaders</Filter>
-    </None>
-    <None Include="default.vert">
-      <Filter>Source Files\Shaders</Filter>
+      <Filter>res\shaders</Filter>
     </None>
     <None Include="default.frag">
-      <Filter>Source Files\Shaders</Filter>
+      <Filter>res\shaders</Filter>
     </None>
-    <None Include="texture.vert">
-      <Filter>Source Files\Shaders</Filter>
+    <None Include="default.vert">
+      <Filter>res\shaders</Filter>
     </None>
     <None Include="texture.frag">
-      <Filter>Source Files\Shaders</Filter>
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="texture.vert">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="triangle1.frag">
+      <Filter>res\shaders</Filter>
+    </None>
+    <None Include="triangle2.frag">
+      <Filter>res\shaders</Filter>
     </None>
   </ItemGroup>
 </Project>

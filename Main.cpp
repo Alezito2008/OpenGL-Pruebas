@@ -3,7 +3,7 @@
 #include <GLFW/glfw3.h>
 #include "logger.h"
 #include "Shader.h"
-
+#include "Renderer.h"
 #include <stb/stb_image.h>
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
@@ -17,7 +17,6 @@ void processInput(GLFWwindow* window) {
 }
 
 int main() {
-
 	glfwInit();
 
 	// Decirle a OpenGL los datos sobre la versión
@@ -48,9 +47,6 @@ int main() {
 	// glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 	// -- Creación de shaders -- //
-
-	int success;
-	char infoLog[512];
 
 	Shader shaderTextura = Shader("texture.vert", "texture.frag");
 
@@ -134,6 +130,16 @@ int main() {
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
 	glEnableVertexAttribArray(1);
 
+	shaderTextura.use();
+
+	glUniform1i(glGetUniformLocation(shaderTextura.ID, "textura1"), 0);
+	glUniform1i(glGetUniformLocation(shaderTextura.ID, "textura2"), 1);
+
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, texture);
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, texture2);
+
 	while (!glfwWindowShouldClose(window)) {
 		processInput(window);
 
@@ -143,17 +149,9 @@ int main() {
 		// primer triangulo
 		shaderTextura.use();
 
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, texture);
-		glActiveTexture(GL_TEXTURE1);
-		glBindTexture(GL_TEXTURE_2D, texture2);
-
 		glBindVertexArray(VAO);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-
-		glUniform1i(glGetUniformLocation(shaderTextura.ID, "textura1"), 0);
-		glUniform1i(glGetUniformLocation(shaderTextura.ID, "textura2"), 1);
+		GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0));
 
 		glfwPollEvents();
 		glfwSwapBuffers(window);

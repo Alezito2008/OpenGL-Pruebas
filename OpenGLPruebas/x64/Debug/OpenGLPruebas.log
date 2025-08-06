@@ -1,4 +1,4 @@
 ﻿  Main.cpp
-C:\Users\Alezito2008\OneDrive\Documentos\Programacion\Pruebas\OpenGL\OpenGLPruebas\Main.cpp(53,7): warning C4101: 'infoLog': unreferenced local variable
-C:\Users\Alezito2008\OneDrive\Documentos\Programacion\Pruebas\OpenGL\OpenGLPruebas\Main.cpp(52,6): warning C4101: 'success': unreferenced local variable
+  Renderer.cpp
+  Generating Code...
   OpenGLPruebas.vcxproj -> C:\Users\Alezito2008\OneDrive\Documentos\Programacion\Pruebas\OpenGL\OpenGLPruebas\x64\Debug\OpenGLPruebas.exe
