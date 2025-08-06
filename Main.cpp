@@ -145,7 +145,7 @@ int main() {
 		shaderTextura.use();
 
 		glBindVertexArray(VAO);
-		GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0));
+		GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr));
 
 		glfwPollEvents();
 		glfwSwapBuffers(window);
