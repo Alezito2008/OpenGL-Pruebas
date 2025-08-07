@@ -13,11 +13,26 @@
 #include "IndexBuffer.h"
 #include "VertexArray.h"
 
-void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
+struct WindowSettings {
+	int width = 1500;
+	int height = 1000;
+	float GetAspectRatio() const {
+		return static_cast<float>(width) / height;
+	}
+};
+
+struct CameraSettings {
+	float FOV = 45.0f;
+};
+
+WindowSettings windowSettings;
+CameraSettings cameraSettings;
+
+static void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
 	glViewport(0, 0, width, height);
 }
 
-void processInput(GLFWwindow* window) {
+static void processInput(GLFWwindow* window) {
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
 		glfwSetWindowShouldClose(window, true);
 	}
@@ -32,7 +47,7 @@ int main() {
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	// Crear ventana de 800x800 llamada "Pruebas"
-	GLFWwindow* window = glfwCreateWindow(1500, 1000, "Pruebas", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(windowSettings.width, windowSettings.height, "Pruebas", NULL, NULL);
 	// Si no se pudo crear, terminar
 	if (window == NULL) {
 		logger.error("No se pudo crear la ventana");
@@ -49,7 +64,7 @@ int main() {
 	gladLoadGL();
 
 	// Especificar el viewport
-	glViewport(0, 0, 1500, 1000);
+	glViewport(0, 0, windowSettings.width, windowSettings.height);
 
 	// glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
@@ -109,12 +124,16 @@ int main() {
 
 	glBindTexture(GL_TEXTURE_2D, texture2);
 	if (data) {
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, img_width, img_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, img_width, img_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 		glGenerateMipmap(GL_TEXTURE_2D);
 	}
 	else {
 		std::cout << "Error al cargar textura2" << std::endl;
 	}
+
+	stbi_image_free(data);
+
+	// -- Elementos --
 
 	VertexArray va;
 	va.Bind();
@@ -153,7 +172,7 @@ int main() {
 		view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
 
 		glm::mat4 projection = glm::mat4(1.0f);
-		projection = glm::perspective(glm::radians(45.0f), 1500.0f / 1000.0f, 0.1f, 100.0f);
+		projection = glm::perspective(glm::radians(cameraSettings.FOV), windowSettings.GetAspectRatio(), 0.1f, 100.0f);
 
 		unsigned int transformLoc = glGetUniformLocation(shaderTextura.ID, "transform");
 		glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(projection * view * model));
