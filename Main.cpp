@@ -144,7 +144,7 @@ int main() {
 	layout.Push<float>(2, false);
 	va.AddBuffer(VBO, layout);
 
-	shaderTextura.use();
+	shaderTextura.Use();
 
 	glUniform1i(glGetUniformLocation(shaderTextura.ID, "textura1"), 0);
 	glUniform1i(glGetUniformLocation(shaderTextura.ID, "textura2"), 1);
@@ -161,7 +161,7 @@ int main() {
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		// primer triangulo
-		shaderTextura.use();
+		shaderTextura.Use();
 
 		va.Bind();
 

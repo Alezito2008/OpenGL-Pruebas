@@ -1,2 +1,29 @@
-﻿  Main.cpp
+﻿  IndexBuffer.cpp
+  Main.cpp
+  Renderer.cpp
+  VertexArray.cpp
+C:\Users\49090854\Source\Repos\OpenGL-Pruebas1\VertexArray.cpp(22,112): warning C4312: 'conversión de tipo': conversión de 'unsigned int' a 'void *' de mayor tamaño
+  VertexBuffer.cpp
+  Generando código...
+glfw3.lib(init.obj) : warning LNK4099: no se encontró PDB 'glfw3.pdb' con 'glfw3.lib(init.obj)' o en 'C:\Users\49090854\Source\Repos\OpenGL-Pruebas1\x64\Debug\glfw3.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+glfw3.lib(window.obj) : warning LNK4099: no se encontró PDB 'glfw3.pdb' con 'glfw3.lib(window.obj)' o en 'C:\Users\49090854\Source\Repos\OpenGL-Pruebas1\x64\Debug\glfw3.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+glfw3.lib(input.obj) : warning LNK4099: no se encontró PDB 'glfw3.pdb' con 'glfw3.lib(input.obj)' o en 'C:\Users\49090854\Source\Repos\OpenGL-Pruebas1\x64\Debug\glfw3.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+glfw3.lib(context.obj) : warning LNK4099: no se encontró PDB 'glfw3.pdb' con 'glfw3.lib(context.obj)' o en 'C:\Users\49090854\Source\Repos\OpenGL-Pruebas1\x64\Debug\glfw3.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+glfw3.lib(win32_time.obj) : warning LNK4099: no se encontró PDB 'glfw3.pdb' con 'glfw3.lib(win32_time.obj)' o en 'C:\Users\49090854\Source\Repos\OpenGL-Pruebas1\x64\Debug\glfw3.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+glfw3.lib(win32_thread.obj) : warning LNK4099: no se encontró PDB 'glfw3.pdb' con 'glfw3.lib(win32_thread.obj)' o en 'C:\Users\49090854\Source\Repos\OpenGL-Pruebas1\x64\Debug\glfw3.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+glfw3.lib(platform.obj) : warning LNK4099: no se encontró PDB 'glfw3.pdb' con 'glfw3.lib(platform.obj)' o en 'C:\Users\49090854\Source\Repos\OpenGL-Pruebas1\x64\Debug\glfw3.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+glfw3.lib(monitor.obj) : warning LNK4099: no se encontró PDB 'glfw3.pdb' con 'glfw3.lib(monitor.obj)' o en 'C:\Users\49090854\Source\Repos\OpenGL-Pruebas1\x64\Debug\glfw3.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+glfw3.lib(vulkan.obj) : warning LNK4099: no se encontró PDB 'glfw3.pdb' con 'glfw3.lib(vulkan.obj)' o en 'C:\Users\49090854\Source\Repos\OpenGL-Pruebas1\x64\Debug\glfw3.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+glfw3.lib(win32_init.obj) : warning LNK4099: no se encontró PDB 'glfw3.pdb' con 'glfw3.lib(win32_init.obj)' o en 'C:\Users\49090854\Source\Repos\OpenGL-Pruebas1\x64\Debug\glfw3.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+glfw3.lib(null_init.obj) : warning LNK4099: no se encontró PDB 'glfw3.pdb' con 'glfw3.lib(null_init.obj)' o en 'C:\Users\49090854\Source\Repos\OpenGL-Pruebas1\x64\Debug\glfw3.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+glfw3.lib(win32_module.obj) : warning LNK4099: no se encontró PDB 'glfw3.pdb' con 'glfw3.lib(win32_module.obj)' o en 'C:\Users\49090854\Source\Repos\OpenGL-Pruebas1\x64\Debug\glfw3.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+glfw3.lib(win32_monitor.obj) : warning LNK4099: no se encontró PDB 'glfw3.pdb' con 'glfw3.lib(win32_monitor.obj)' o en 'C:\Users\49090854\Source\Repos\OpenGL-Pruebas1\x64\Debug\glfw3.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+glfw3.lib(win32_window.obj) : warning LNK4099: no se encontró PDB 'glfw3.pdb' con 'glfw3.lib(win32_window.obj)' o en 'C:\Users\49090854\Source\Repos\OpenGL-Pruebas1\x64\Debug\glfw3.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+glfw3.lib(win32_joystick.obj) : warning LNK4099: no se encontró PDB 'glfw3.pdb' con 'glfw3.lib(win32_joystick.obj)' o en 'C:\Users\49090854\Source\Repos\OpenGL-Pruebas1\x64\Debug\glfw3.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+glfw3.lib(wgl_context.obj) : warning LNK4099: no se encontró PDB 'glfw3.pdb' con 'glfw3.lib(wgl_context.obj)' o en 'C:\Users\49090854\Source\Repos\OpenGL-Pruebas1\x64\Debug\glfw3.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+glfw3.lib(egl_context.obj) : warning LNK4099: no se encontró PDB 'glfw3.pdb' con 'glfw3.lib(egl_context.obj)' o en 'C:\Users\49090854\Source\Repos\OpenGL-Pruebas1\x64\Debug\glfw3.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+glfw3.lib(osmesa_context.obj) : warning LNK4099: no se encontró PDB 'glfw3.pdb' con 'glfw3.lib(osmesa_context.obj)' o en 'C:\Users\49090854\Source\Repos\OpenGL-Pruebas1\x64\Debug\glfw3.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+glfw3.lib(null_monitor.obj) : warning LNK4099: no se encontró PDB 'glfw3.pdb' con 'glfw3.lib(null_monitor.obj)' o en 'C:\Users\49090854\Source\Repos\OpenGL-Pruebas1\x64\Debug\glfw3.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+glfw3.lib(null_window.obj) : warning LNK4099: no se encontró PDB 'glfw3.pdb' con 'glfw3.lib(null_window.obj)' o en 'C:\Users\49090854\Source\Repos\OpenGL-Pruebas1\x64\Debug\glfw3.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+glfw3.lib(null_joystick.obj) : warning LNK4099: no se encontró PDB 'glfw3.pdb' con 'glfw3.lib(null_joystick.obj)' o en 'C:\Users\49090854\Source\Repos\OpenGL-Pruebas1\x64\Debug\glfw3.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
   OpenGLPruebas.vcxproj -> C:\Users\49090854\Source\Repos\OpenGL-Pruebas1\x64\Debug\OpenGLPruebas.exe
