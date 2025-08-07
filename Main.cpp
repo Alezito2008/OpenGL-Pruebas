@@ -2,12 +2,16 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <stb/stb_image.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 #include "logger.h"
 #include "Shader.h"
 #include "Renderer.h"
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
+#include "VertexArray.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
 	glViewport(0, 0, width, height);
@@ -28,7 +32,7 @@ int main() {
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	// Crear ventana de 800x800 llamada "Pruebas"
-	GLFWwindow* window = glfwCreateWindow(1000, 1000, "Pruebas", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(1500, 1000, "Pruebas", NULL, NULL);
 	// Si no se pudo crear, terminar
 	if (window == NULL) {
 		logger.error("No se pudo crear la ventana");
@@ -45,7 +49,7 @@ int main() {
 	gladLoadGL();
 
 	// Especificar el viewport
-	glViewport(0, 0, 1000, 1000);
+	glViewport(0, 0, 1500, 1000);
 
 	// glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
@@ -112,18 +116,14 @@ int main() {
 		std::cout << "Error al cargar textura2" << std::endl;
 	}
 
-	unsigned int VAO;
-	glGenVertexArrays(1, &VAO);
-	glBindVertexArray(VAO);
-
+	VertexArray va;
+	va.Bind();
 	VertexBuffer VBO(vertices, sizeof(vertices));
 	IndexBuffer EBO(indices, 6);
-
-	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
-	glEnableVertexAttribArray(0);
-
-	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
-	glEnableVertexAttribArray(1);
+	VertexBufferLayout layout;
+	layout.Push<float>(2, false);
+	layout.Push<float>(2, false);
+	va.AddBuffer(VBO, layout);
 
 	shaderTextura.use();
 
@@ -144,7 +144,20 @@ int main() {
 		// primer triangulo
 		shaderTextura.use();
 
-		glBindVertexArray(VAO);
+		va.Bind();
+
+		glm::mat4 model = glm::mat4(1.0f);
+		model = glm::rotate(model, glm::radians(-55.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+
+		glm::mat4 view = glm::mat4(1.0f);
+		view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+
+		glm::mat4 projection = glm::mat4(1.0f);
+		projection = glm::perspective(glm::radians(45.0f), 1500.0f / 1000.0f, 0.1f, 100.0f);
+
+		unsigned int transformLoc = glGetUniformLocation(shaderTextura.ID, "transform");
+		glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(projection * view * model));
+
 		GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr));
 
 		glfwPollEvents();

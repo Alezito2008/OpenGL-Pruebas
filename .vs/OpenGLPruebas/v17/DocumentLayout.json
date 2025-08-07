@@ -3,32 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7C6DC27F-B4B4-473B-BCB6-8EF03C815727}|OpenGLPruebas.vcxproj|C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\Shader.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{7C6DC27F-B4B4-473B-BCB6-8EF03C815727}|OpenGLPruebas.vcxproj|solutionrelative:Shader.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7C6DC27F-B4B4-473B-BCB6-8EF03C815727}|OpenGLPruebas.vcxproj|C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\Shader.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{7C6DC27F-B4B4-473B-BCB6-8EF03C815727}|OpenGLPruebas.vcxproj|solutionrelative:Shader.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{7C6DC27F-B4B4-473B-BCB6-8EF03C815727}|OpenGLPruebas.vcxproj|C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{7C6DC27F-B4B4-473B-BCB6-8EF03C815727}|OpenGLPruebas.vcxproj|solutionrelative:Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7C6DC27F-B4B4-473B-BCB6-8EF03C815727}|OpenGLPruebas.vcxproj|C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\VertexBuffer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{7C6DC27F-B4B4-473B-BCB6-8EF03C815727}|OpenGLPruebas.vcxproj|solutionrelative:VertexBuffer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{7C6DC27F-B4B4-473B-BCB6-8EF03C815727}|OpenGLPruebas.vcxproj|C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\VertexBufferLayout.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7C6DC27F-B4B4-473B-BCB6-8EF03C815727}|OpenGLPruebas.vcxproj|solutionrelative:VertexBufferLayout.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7C6DC27F-B4B4-473B-BCB6-8EF03C815727}|OpenGLPruebas.vcxproj|C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\VertexBuffer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{7C6DC27F-B4B4-473B-BCB6-8EF03C815727}|OpenGLPruebas.vcxproj|solutionrelative:VertexBuffer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{7C6DC27F-B4B4-473B-BCB6-8EF03C815727}|OpenGLPruebas.vcxproj|C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\VertexArray.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7C6DC27F-B4B4-473B-BCB6-8EF03C815727}|OpenGLPruebas.vcxproj|solutionrelative:VertexArray.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7C6DC27F-B4B4-473B-BCB6-8EF03C815727}|OpenGLPruebas.vcxproj|C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\IndexBuffer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{7C6DC27F-B4B4-473B-BCB6-8EF03C815727}|OpenGLPruebas.vcxproj|solutionrelative:IndexBuffer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7C6DC27F-B4B4-473B-BCB6-8EF03C815727}|OpenGLPruebas.vcxproj|C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\IndexBuffer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{7C6DC27F-B4B4-473B-BCB6-8EF03C815727}|OpenGLPruebas.vcxproj|solutionrelative:IndexBuffer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{7C6DC27F-B4B4-473B-BCB6-8EF03C815727}|OpenGLPruebas.vcxproj|C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\VertexArray.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7C6DC27F-B4B4-473B-BCB6-8EF03C815727}|OpenGLPruebas.vcxproj|solutionrelative:VertexArray.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,17 +26,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "Main.cpp",
               "DocumentMoniker": "C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\Main.cpp",
               "RelativeDocumentMoniker": "Main.cpp",
               "ToolTip": "C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\Main.cpp",
               "RelativeToolTip": "Main.cpp",
-              "ViewState": "AQIAACoAAAAAAAAAAAAAADUAAAAHAAAA",
+              "ViewState": "AQIAAF4AAAAAAAAAAAAIwH0AAAAbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-07-18T00:51:39.058Z",
               "IsPinned": true,
@@ -56,80 +44,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Shader.cpp",
-              "DocumentMoniker": "C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\Shader.cpp",
-              "RelativeDocumentMoniker": "Shader.cpp",
-              "ToolTip": "C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\Shader.cpp",
-              "RelativeToolTip": "Shader.cpp",
-              "ViewState": "AQIAACAAAAAAAAAAAAAEwC0AAAAvAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-08-06T02:34:54.437Z",
+              "DocumentIndex": 1,
+              "Title": "VertexBufferLayout.h",
+              "DocumentMoniker": "C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\VertexBufferLayout.h",
+              "RelativeDocumentMoniker": "VertexBufferLayout.h",
+              "ToolTip": "C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\VertexBufferLayout.h",
+              "RelativeToolTip": "VertexBufferLayout.h",
+              "ViewState": "AQIAABcAAAAAAAAAAAAIwD8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-08-07T02:07:30.722Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Shader.h",
-              "DocumentMoniker": "C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\Shader.h",
-              "RelativeDocumentMoniker": "Shader.h",
-              "ToolTip": "C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\Shader.h",
-              "RelativeToolTip": "Shader.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAQAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-08-06T02:34:20.944Z",
+              "DocumentIndex": 2,
+              "Title": "VertexArray.cpp",
+              "DocumentMoniker": "C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\VertexArray.cpp",
+              "RelativeDocumentMoniker": "VertexArray.cpp",
+              "ToolTip": "C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\VertexArray.cpp",
+              "RelativeToolTip": "VertexArray.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAB/AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-08-07T01:44:35.103Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "VertexBuffer.cpp",
-              "DocumentMoniker": "C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\VertexBuffer.cpp",
-              "RelativeDocumentMoniker": "VertexBuffer.cpp",
-              "ToolTip": "C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\VertexBuffer.cpp",
-              "RelativeToolTip": "VertexBuffer.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAZAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-08-06T02:01:59.886Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "VertexBuffer.h",
-              "DocumentMoniker": "C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\VertexBuffer.h",
-              "RelativeDocumentMoniker": "VertexBuffer.h",
-              "ToolTip": "C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\VertexBuffer.h",
-              "RelativeToolTip": "VertexBuffer.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
+              "Title": "VertexArray.h",
+              "DocumentMoniker": "C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\VertexArray.h",
+              "RelativeDocumentMoniker": "VertexArray.h",
+              "ToolTip": "C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\VertexArray.h",
+              "RelativeToolTip": "VertexArray.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-08-06T02:05:44.206Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "IndexBuffer.h",
-              "DocumentMoniker": "C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\IndexBuffer.h",
-              "RelativeDocumentMoniker": "IndexBuffer.h",
-              "ToolTip": "C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\IndexBuffer.h",
-              "RelativeToolTip": "IndexBuffer.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-08-06T01:56:59.413Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "IndexBuffer.cpp",
-              "DocumentMoniker": "C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\IndexBuffer.cpp",
-              "RelativeDocumentMoniker": "IndexBuffer.cpp",
-              "ToolTip": "C:\\Users\\Alezito2008\\OneDrive\\Documentos\\Programacion\\Pruebas\\OpenGL\\OpenGLPruebas\\IndexBuffer.cpp",
-              "RelativeToolTip": "IndexBuffer.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAgAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-08-06T01:56:21.6Z",
+              "WhenOpened": "2025-08-06T23:53:01.351Z",
               "EditorCaption": ""
             }
           ]

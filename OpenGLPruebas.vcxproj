@@ -75,8 +75,8 @@
     <LibraryPath>C:\Users\Alezito2008\OneDrive\Documentos\Programacion\Pruebas\OpenGL\OpenGLPruebas\Libraries\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\Alezito2008\OneDrive\Documentos\Programacion\Pruebas\OpenGL\OpenGLPruebas\Libraries\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Alezito2008\OneDrive\Documentos\Programacion\Pruebas\OpenGL\OpenGLPruebas\Libraries\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)Libraries\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)Libraries\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -137,6 +137,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="VertexBufferLayout.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="IndexBuffer.cpp" />
     <ClCompile Include="logger.cpp" />
@@ -144,13 +145,16 @@
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="stb_image_loader.cpp" />
+    <ClCompile Include="VertexArray.cpp" />
     <ClCompile Include="VertexBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="VertexBufferLayout.h" />
     <ClInclude Include="IndexBuffer.h" />
     <ClInclude Include="logger.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="VertexArray.h" />
     <ClInclude Include="VertexBuffer.h" />
   </ItemGroup>
   <ItemGroup>
