@@ -1,2 +1,4 @@
-.vs
-OpenGLPruebas
+.vs/
+OpenGLPruebas/
+x64/
+enc_temp_folder/
