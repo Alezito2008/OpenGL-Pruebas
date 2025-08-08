@@ -5,14 +5,17 @@
 #include <string>
 #include <iostream>
 #include <glm/matrix.hpp>
+#include <unordered_map>
 
 class Shader
 {
 public:
 	unsigned int ID;
+	mutable std::unordered_map<std::string, unsigned int> m_LocationCache;
 	Shader(const char* vertexPath, const char* fragmentPath);
 	~Shader();
 	void Bind() const;
+	unsigned int GetUniformLocation(const std::string& name) const;
 	void setBool(const std::string& name, bool value) const;
 	void setInt(const std::string& name, int value) const;
 	void setFloat(const std::string& name, float value) const;

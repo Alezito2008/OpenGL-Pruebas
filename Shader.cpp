@@ -1,6 +1,7 @@
 #include "Shader.h"
 
-#include <glad/glad.h>
+#include "Debug.h"
+
 #include <glm/gtc/type_ptr.hpp>
 
 #include <string>
@@ -87,19 +88,33 @@ void Shader::Bind() const {
 	glUseProgram(ID);
 }
 
+unsigned int Shader::GetUniformLocation(const std::string& name) const
+{
+	auto location = m_LocationCache.find(name);
+
+	// si no lo encuentra
+	if (location == m_LocationCache.end()) {
+		unsigned int loc = glGetUniformLocation(ID, name.c_str());
+		m_LocationCache[name] = loc;
+		return loc;
+	}
+
+	return location->second;
+}
+
 void Shader::setBool(const std::string& name, bool value) const {
-	glUniform1i(glGetUniformLocation(ID, name.c_str()), static_cast<int>(value));
+	glUniform1i(GetUniformLocation(name), static_cast<int>(value));
 }
 
 void Shader::setInt(const std::string& name, int value) const {
-	glUniform1i(glGetUniformLocation(ID, name.c_str()), value);
+	glUniform1i(GetUniformLocation(name), value);
 }
 
 void Shader::setFloat(const std::string& name, float value) const {
-	glUniform1f(glGetUniformLocation(ID, name.c_str()), value);
+	glUniform1f(GetUniformLocation(name), value);
 }
 
 void Shader::setMat4(const std::string& name, glm::mat4 value) const
 {
-	glUniformMatrix4fv(glGetUniformLocation(ID, name.c_str()), 1, GL_FALSE, glm::value_ptr(value));
+	glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, glm::value_ptr(value));
 }

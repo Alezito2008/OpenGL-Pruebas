@@ -29,6 +29,8 @@ WindowSettings windowSettings;
 CameraSettings cameraSettings;
 
 static void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
+	windowSettings.width = width;
+	windowSettings.height = height;
 	glViewport(0, 0, width, height);
 }
 
