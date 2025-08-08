@@ -88,13 +88,6 @@ int main() {
 
 	stbi_set_flip_vertically_on_load(true);
 
-	// Repetición
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	// Filtros
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_LINEAR);
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
 	// Importar imagen
 	// ---------------
 
@@ -133,7 +126,16 @@ int main() {
 
 	stbi_image_free(data);
 
+	// Repetición
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	// Filtros
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_LINEAR);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
 	// -- Elementos --
+
+	Renderer renderer;
 
 	VertexArray va;
 	va.Bind();
@@ -144,7 +146,7 @@ int main() {
 	layout.Push<float>(2, false);
 	va.AddBuffer(VBO, layout);
 
-	shaderTextura.Use();
+	shaderTextura.Bind();
 
 	glUniform1i(glGetUniformLocation(shaderTextura.ID, "textura1"), 0);
 	glUniform1i(glGetUniformLocation(shaderTextura.ID, "textura2"), 1);
@@ -154,16 +156,12 @@ int main() {
 	glActiveTexture(GL_TEXTURE1);
 	glBindTexture(GL_TEXTURE_2D, texture2);
 
+	glClearColor(0.0, 0.0, 0.5, 1.0);
+
 	while (!glfwWindowShouldClose(window)) {
 		processInput(window);
 
-		glClearColor(0.0, 0.0, 0.5, 1.0);
-		glClear(GL_COLOR_BUFFER_BIT);
-
-		// primer triangulo
-		shaderTextura.Use();
-
-		va.Bind();
+		renderer.Clear();
 
 		glm::mat4 model = glm::mat4(1.0f);
 		model = glm::rotate(model, glm::radians(-55.0f), glm::vec3(1.0f, 0.0f, 0.0f));
@@ -174,13 +172,15 @@ int main() {
 		glm::mat4 projection = glm::mat4(1.0f);
 		projection = glm::perspective(glm::radians(cameraSettings.FOV), windowSettings.GetAspectRatio(), 0.1f, 100.0f);
 
+		shaderTextura.Bind();
+
 		unsigned int transformLoc = glGetUniformLocation(shaderTextura.ID, "transform");
 		glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(projection * view * model));
 
-		GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr));
+		renderer.Draw(va, EBO, shaderTextura);
 
-		glfwPollEvents();
 		glfwSwapBuffers(window);
+		glfwPollEvents();
 	}
 
 	// Eliminar ventana antes de terminar
