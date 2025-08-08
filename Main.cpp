@@ -22,7 +22,15 @@ struct WindowSettings {
 };
 
 struct CameraSettings {
-	float FOV = 45.0f;
+	float FOV = 80.0f;
+	glm::vec3 pos = glm::vec3(0.0f, 0.0f, 3.0f);
+	glm::vec3 target = glm::vec3(0.0f, 0.0f, 0.0f);
+	glm::vec3 GetDirection() {
+		glm::normalize(pos - target);
+	}
+	glm::vec3 GetRight() {
+
+	}
 };
 
 WindowSettings windowSettings;
