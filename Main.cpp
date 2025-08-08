@@ -243,12 +243,9 @@ int main() {
 			glm::mat4 projection = glm::mat4(1.0f);
 			projection = glm::perspective(glm::radians(cameraSettings.FOV), windowSettings.GetAspectRatio(), 0.1f, 100.0f);
 
-			shaderTextura.Bind();
-			shaderTextura.setMat4("transform", (projection* view* model));
+			shaderTextura.setMat4("transform", (projection * view * model));
 
-			//renderer.Draw(va, EBO, shaderTextura);
-			cubeVA.Bind();
-			glDrawArrays(GL_TRIANGLES, 0, 36);
+			renderer.Draw(cubeVA, shaderTextura, 36);
 		}
 
 		glfwSwapBuffers(window);
