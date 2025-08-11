@@ -19,7 +19,6 @@ public:
 	Camera();
 	void SetTarget(const glm::vec3& target);
 	void SetPosition(const glm::vec3& position);
-	void LookAt(const glm::vec3& position);
 	glm::vec3 GetRight();
 	glm::vec3 GetUp();
 	glm::mat4 GetView();

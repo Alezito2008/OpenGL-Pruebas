@@ -230,10 +230,9 @@ int main() {
 		renderer.Clear();
 
 		const float radius = 10.0f;
-		float camX = sin(glfwGetTime()) * radius;
-		float camY = cos(glfwGetTime()) * radius;
+		float camX = (float) sin(glfwGetTime()) * radius;
+		float camY = (float) cos(glfwGetTime()) * radius;
 		camera.SetPosition(glm::vec3(camX, 0.0f, camY));
-		camera.LookAt(glm::vec3(0.0f, 0.0f, 0.0f));
 
 		for (glm::vec3 pos : cubePositions) {
 			float rotation = 45.0f * static_cast<float>(glfwGetTime()) * 0.001f;
@@ -242,8 +241,8 @@ int main() {
 			model = glm::translate(model, pos);
 			model = glm::rotate(model, glm::degrees(rotation + pos.x), glm::vec3(0.3f, 1.0f, 0.0f));
 
-			//glm::mat4 view = glm::mat4(1.0f);
-			//view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+			glm::mat4 view = glm::mat4(1.0f);
+			view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
 
 			glm::mat4 projection = glm::mat4(1.0f);
 			projection = glm::perspective(glm::radians(80.0f), windowSettings.GetAspectRatio(), 0.1f, 100.0f);
