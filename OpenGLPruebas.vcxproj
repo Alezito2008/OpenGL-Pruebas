@@ -152,6 +152,8 @@
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Debug.h" />
+    <ClInclude Include="InputManager.h" />
+    <ClInclude Include="KeyCodes.h" />
     <ClInclude Include="VertexBufferLayout.h" />
     <ClInclude Include="IndexBuffer.h" />
     <ClInclude Include="logger.h" />

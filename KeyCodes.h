@@ -1,6 +1,6 @@
 #pragma once
 
-enum class Key {
+enum class KeyCode {
     KEY_SPACE = 32,
     KEY_APOSTROPHE = 39,    // '
     KEY_COMMA = 44,         // ,
@@ -46,8 +46,8 @@ enum class Key {
     KEY_Y = 89,
     KEY_Z = 90,
     KEY_LEFT_BRACKET = 91,   // [
-    KEY_BACKSLASH = 92,      // \
-            KEY_RIGHT_BRACKET = 93,  // ]
+    KEY_BACKSLASH = 92,      // 
+    KEY_RIGHT_BRACKET = 93,  // ]
     KEY_GRAVE_ACCENT = 96,   // `
     KEY_WORLD_1 = 161,       // non-US #1
     KEY_WORLD_2 = 162,       // non-US #2

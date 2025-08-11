@@ -13,6 +13,7 @@
 #include "IndexBuffer.h"
 #include "VertexArray.h"
 #include "Camera.h"
+#include "InputManager.h"
 
 struct WindowSettings {
 	int width = 1500;
@@ -194,6 +195,7 @@ int main() {
 
 	Renderer renderer;
 	Camera camera;
+	InputManager inputManager(window);
 
 	VertexArray va;
 	va.Bind();
@@ -224,15 +226,29 @@ int main() {
 
 	glClearColor(0.0, 0.0, 0.5, 1.0);
 
+	glm::vec3 cameraPos = glm::vec3(-3.0f, 0.0f, 0.0f);
+
 	while (!glfwWindowShouldClose(window)) {
 		processInput(window);
 
 		renderer.Clear();
 
-		const float radius = 10.0f;
-		float camX = (float) sin(glfwGetTime()) * radius;
-		float camY = (float) cos(glfwGetTime()) * radius;
-		camera.SetPosition(glm::vec3(camX, 0.0f, camY));
+		camera.SetPosition(cameraPos);
+		glm::vec3 deltaXY;
+
+		const float cameraSpeed = 0.05f;
+		if (inputManager.IsKeyPressed(KeyCode::KEY_W)) {
+			cameraPos += camera.GetFront() * cameraSpeed;
+		}
+		else if (inputManager.IsKeyPressed(KeyCode::KEY_S)) {
+			cameraPos -= camera.GetFront() * cameraSpeed;
+		}
+		else if (inputManager.IsKeyPressed(KeyCode::KEY_A)) {
+			cameraPos -= camera.GetRight() * cameraSpeed;
+		}
+		else if (inputManager.IsKeyPressed(KeyCode::KEY_D)) {
+			cameraPos += camera.GetRight() * cameraSpeed;
+		}
 
 		for (glm::vec3 pos : cubePositions) {
 			float rotation = 45.0f * static_cast<float>(glfwGetTime()) * 0.001f;
