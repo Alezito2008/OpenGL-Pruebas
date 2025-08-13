@@ -226,28 +226,28 @@ int main() {
 
 	glClearColor(0.0, 0.0, 0.5, 1.0);
 
-	glm::vec3 cameraPos = glm::vec3(-3.0f, 0.0f, 0.0f);
+	glm::mat4 projection = glm::mat4(1.0f);
+	projection = glm::perspective(glm::radians(80.0f), windowSettings.GetAspectRatio(), 0.1f, 100.0f);
+
+	camera.SetPosition(glm::vec3(0.0f, 0.0f, -3.0f));
 
 	while (!glfwWindowShouldClose(window)) {
 		processInput(window);
 
 		renderer.Clear();
 
-		camera.SetPosition(cameraPos);
-		glm::vec3 deltaXY;
-
 		const float cameraSpeed = 0.05f;
 		if (inputManager.IsKeyPressed(KeyCode::KEY_W)) {
-			cameraPos += camera.GetFront() * cameraSpeed;
+			camera.Move(camera.GetFront() * cameraSpeed);
 		}
-		else if (inputManager.IsKeyPressed(KeyCode::KEY_S)) {
-			cameraPos -= camera.GetFront() * cameraSpeed;
+		if (inputManager.IsKeyPressed(KeyCode::KEY_S)) {
+			camera.Move(-camera.GetFront() * cameraSpeed);
 		}
-		else if (inputManager.IsKeyPressed(KeyCode::KEY_A)) {
-			cameraPos -= camera.GetRight() * cameraSpeed;
+		if (inputManager.IsKeyPressed(KeyCode::KEY_A)) {
+			camera.Move(-camera.GetRight() * cameraSpeed);
 		}
-		else if (inputManager.IsKeyPressed(KeyCode::KEY_D)) {
-			cameraPos += camera.GetRight() * cameraSpeed;
+		if (inputManager.IsKeyPressed(KeyCode::KEY_D)) {
+			camera.Move(camera.GetRight() * cameraSpeed);
 		}
 
 		for (glm::vec3 pos : cubePositions) {
@@ -256,12 +256,6 @@ int main() {
 			glm::mat4 model = glm::mat4(1.0f);
 			model = glm::translate(model, pos);
 			model = glm::rotate(model, glm::degrees(rotation + pos.x), glm::vec3(0.3f, 1.0f, 0.0f));
-
-			glm::mat4 view = glm::mat4(1.0f);
-			view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
-
-			glm::mat4 projection = glm::mat4(1.0f);
-			projection = glm::perspective(glm::radians(80.0f), windowSettings.GetAspectRatio(), 0.1f, 100.0f);
 
 			shaderTextura.setMat4("transform", (projection * camera.GetView() * model));
 

@@ -7,7 +7,7 @@ void Camera::UpdateVectors()
 	m_cameraDirection = glm::normalize(m_cameraPos - m_cameraTarget);
 	m_cameraRight = glm::normalize(glm::cross(m_worldUp, m_cameraDirection));
 	m_cameraUp = glm::normalize(glm::cross(m_cameraDirection, m_cameraRight));
-	m_view = glm::lookAt(m_cameraPos, m_cameraPos + m_cameraFront, m_cameraUp);
+	m_view = glm::lookAt(m_cameraPos, m_cameraTarget, m_cameraUp);
 	m_hasToUpdate = false;
 }
 
@@ -28,9 +28,21 @@ void Camera::SetPosition(const glm::vec3& position)
 	m_hasToUpdate = true;
 }
 
+void Camera::Move(const glm::vec3& offset)
+{
+	m_cameraPos += offset;
+	m_cameraTarget = m_cameraPos + m_cameraFront;
+	m_hasToUpdate = true;
+}
+
 glm::vec3 Camera::GetPosition()
 {
 	return m_cameraPos;
+}
+
+glm::vec3 Camera::GetTarget()
+{
+	return m_cameraTarget;
 }
 
 glm::vec3 Camera::GetRight()
