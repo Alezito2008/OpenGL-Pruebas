@@ -28,9 +28,9 @@ void Camera::SetPosition(const glm::vec3& position)
 	m_hasToUpdate = true;
 }
 
-void Camera::Move(const glm::vec3& offset)
+void Camera::Move(const glm::vec3& direction)
 {
-	m_cameraPos += offset;
+	m_cameraPos += direction;
 	m_cameraTarget = m_cameraPos + m_cameraFront;
 	m_hasToUpdate = true;
 }

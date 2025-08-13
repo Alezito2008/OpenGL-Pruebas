@@ -236,18 +236,25 @@ int main() {
 
 		renderer.Clear();
 
+		glm::vec3 direction(0.0f);
+
 		const float cameraSpeed = 0.05f;
 		if (inputManager.IsKeyPressed(KeyCode::KEY_W)) {
-			camera.Move(camera.GetFront() * cameraSpeed);
+			direction += camera.GetFront();
 		}
 		if (inputManager.IsKeyPressed(KeyCode::KEY_S)) {
-			camera.Move(-camera.GetFront() * cameraSpeed);
+			direction += -camera.GetFront();
 		}
 		if (inputManager.IsKeyPressed(KeyCode::KEY_A)) {
-			camera.Move(-camera.GetRight() * cameraSpeed);
+			direction += -camera.GetRight();
 		}
 		if (inputManager.IsKeyPressed(KeyCode::KEY_D)) {
-			camera.Move(camera.GetRight() * cameraSpeed);
+			direction += camera.GetRight();
+		}
+
+		if (glm::length(direction) > 0.0f) {
+			direction = glm::normalize(direction);
+			camera.Move(direction * cameraSpeed);
 		}
 
 		for (glm::vec3 pos : cubePositions) {
