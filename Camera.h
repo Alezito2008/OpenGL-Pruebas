@@ -20,6 +20,7 @@ public:
 	void UpdateVectors();
 	void SetTarget(const glm::vec3& target);
 	void SetPosition(const glm::vec3& position);
+	void SetFront(const glm::vec3& position);
 	void Move(const glm::vec3& offset);
 	glm::vec3 GetPosition();
 	glm::vec3 GetTarget();

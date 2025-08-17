@@ -4,8 +4,9 @@
 
 void Camera::UpdateVectors()
 {
-	m_cameraDirection = glm::normalize(m_cameraPos - m_cameraTarget);
-	m_cameraRight = glm::normalize(glm::cross(m_worldUp, m_cameraDirection));
+	m_cameraTarget = m_cameraPos + m_cameraFront;
+	m_cameraDirection = glm::normalize(m_cameraTarget - m_cameraPos);
+	m_cameraRight = glm::normalize(glm::cross(m_cameraDirection, m_worldUp));
 	m_cameraUp = glm::normalize(glm::cross(m_cameraDirection, m_cameraRight));
 	m_view = glm::lookAt(m_cameraPos, m_cameraTarget, m_cameraUp);
 	m_hasToUpdate = false;
@@ -28,10 +29,15 @@ void Camera::SetPosition(const glm::vec3& position)
 	m_hasToUpdate = true;
 }
 
+void Camera::SetFront(const glm::vec3& position)
+{
+	m_cameraFront = position;
+	m_hasToUpdate = true;
+}
+
 void Camera::Move(const glm::vec3& direction)
 {
 	m_cameraPos += direction;
-	m_cameraTarget = m_cameraPos + m_cameraFront;
 	m_hasToUpdate = true;
 }
 

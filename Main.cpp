@@ -31,6 +31,32 @@ static void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 	glViewport(0, 0, width, height);
 }
 
+float pitch = 0.0f;
+float yaw = 0.0f;
+
+float lastX = windowSettings.width / 2;
+float lastY = windowSettings.height / 2;
+
+static void processMouse(GLFWwindow* window, double xpos, double ypos) {
+	const float sensitivity = 0.2f;
+
+	float deltaX = (xpos - lastX) * sensitivity;
+	float deltaY = (ypos - lastY) * sensitivity;
+
+	lastX = xpos;
+	lastY = ypos;
+
+	yaw += deltaX;
+	pitch += deltaY;
+
+	if (pitch > 89.0f) {
+		pitch = 89.0f;
+	}
+	else if (pitch < -89.0f) {
+		pitch = -89.0f;
+	}
+}
+
 static void processInput(GLFWwindow* window) {
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
 		glfwSetWindowShouldClose(window, true);
@@ -58,6 +84,10 @@ int main() {
 	glfwMakeContextCurrent(window);
 	// Handlear cambios de tamaño
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+	// Handlear input cursor
+	glfwSetCursorPosCallback(window, processMouse);
+	// Ocultar cursor
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
 	// Cargar GLAD
 	gladLoadGL();
@@ -243,14 +273,20 @@ int main() {
 			direction += camera.GetFront();
 		}
 		if (inputManager.IsKeyPressed(KeyCode::KEY_S)) {
-			direction += -camera.GetFront();
+			direction -= camera.GetFront();
 		}
 		if (inputManager.IsKeyPressed(KeyCode::KEY_A)) {
-			direction += -camera.GetRight();
-		}
-		if (inputManager.IsKeyPressed(KeyCode::KEY_D)) {
 			direction += camera.GetRight();
 		}
+		if (inputManager.IsKeyPressed(KeyCode::KEY_D)) {
+			direction -= camera.GetRight();
+		}
+
+		glm::vec3 front;
+		front.x = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+		front.y = sin(glm::radians(pitch));
+		front.z = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
+		camera.SetFront(front);
 
 		if (glm::length(direction) > 0.0f) {
 			direction = glm::normalize(direction);
