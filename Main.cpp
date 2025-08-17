@@ -14,6 +14,7 @@
 #include "VertexArray.h"
 #include "Camera.h"
 #include "InputManager.h"
+#include "Texture.h"
 
 struct WindowSettings {
 	int width = 1500;
@@ -174,52 +175,8 @@ int main() {
 
 	// -- Parte de las texturas --
 
-	stbi_set_flip_vertically_on_load(true);
-
-	// Importar imagen
-	// ---------------
-
-	int img_width, img_height, nrChannels;
-	unsigned char* data = stbi_load("container.jpg", &img_width, &img_height, &nrChannels, 0);
-
-	// Ahora si se crea la textura
-
-	unsigned int texture;
-	glGenTextures(1, &texture);
-
-	glBindTexture(GL_TEXTURE_2D, texture);
-	if (data) {
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, img_width, img_height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-		glGenerateMipmap(GL_TEXTURE_2D);
-	}
-	else {
-		std::cout << "Error al cargar textura1" << std::endl;
-	}
-	stbi_image_free(data);
-
-	// TEXTURA 2
-	data = stbi_load("awesomeface.png", &img_width, &img_height, &nrChannels, 0);
-
-	unsigned int texture2;
-	glGenTextures(1, &texture2);
-
-	glBindTexture(GL_TEXTURE_2D, texture2);
-	if (data) {
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, img_width, img_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
-		glGenerateMipmap(GL_TEXTURE_2D);
-	}
-	else {
-		std::cout << "Error al cargar textura2" << std::endl;
-	}
-
-	stbi_image_free(data);
-
-	// Repetición
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	// Filtros
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_LINEAR);
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	Texture containerTexture("container.jpg");
+	Texture faceTexture("awesomeface.png");
 
 	// -- Elementos --
 
@@ -249,10 +206,8 @@ int main() {
 	glUniform1i(glGetUniformLocation(shaderTextura.ID, "textura1"), 0);
 	glUniform1i(glGetUniformLocation(shaderTextura.ID, "textura2"), 1);
 
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, texture);
-	glActiveTexture(GL_TEXTURE1);
-	glBindTexture(GL_TEXTURE_2D, texture2);
+	containerTexture.Bind();
+	faceTexture.Bind(1);
 
 	glClearColor(0.0, 0.0, 0.5, 1.0);
 
@@ -295,10 +250,11 @@ int main() {
 
 		for (glm::vec3 pos : cubePositions) {
 			float rotation = 45.0f * static_cast<float>(glfwGetTime()) * 0.001f;
+			rotation = 0.0f;
 
 			glm::mat4 model = glm::mat4(1.0f);
 			model = glm::translate(model, pos);
-			model = glm::rotate(model, glm::degrees(rotation + pos.x), glm::vec3(0.3f, 1.0f, 0.0f));
+			model = glm::rotate(model, /*glm::degrees(rotation + pos.x)*/ 0.0f, glm::vec3(0.3f, 1.0f, 0.0f));
 
 			shaderTextura.setMat4("transform", (projection * camera.GetView() * model));
 
