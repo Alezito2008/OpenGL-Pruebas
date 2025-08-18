@@ -6,7 +6,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "logger.h"
+#include "WindowManager.h"
 #include "Shader.h"
 #include "Renderer.h"
 #include "VertexBuffer.h"
@@ -16,21 +16,14 @@
 #include "InputManager.h"
 #include "Texture.h"
 
-struct WindowSettings {
-	int width = 1500;
-	int height = 1000;
-	float GetAspectRatio() const {
-		return static_cast<float>(width) / height;
-	}
+WindowSettings windowSettings = {
+	"OpenGL",
+	1500,
+	1000
 };
 
-WindowSettings windowSettings;
-
-static void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
-	windowSettings.width = width;
-	windowSettings.height = height;
-	glViewport(0, 0, width, height);
-}
+WindowManager windowManager(windowSettings);
+GLFWwindow* window = windowManager.GetWindow();
 
 float pitch = 0.0f;
 float yaw = 0.0f;
@@ -65,37 +58,6 @@ static void processInput(GLFWwindow* window) {
 }
 
 int main() {
-	glfwInit();
-
-	// Decirle a OpenGL los datos sobre la versión
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
-	// Crear ventana de 800x800 llamada "Pruebas"
-	GLFWwindow* window = glfwCreateWindow(windowSettings.width, windowSettings.height, "Pruebas", NULL, NULL);
-	// Si no se pudo crear, terminar
-	if (window == NULL) {
-		logger.error("No se pudo crear la ventana");
-		glfwTerminate();
-		return -1;
-	}
-
-	// Asignar el contexto a la ventana
-	glfwMakeContextCurrent(window);
-	// Handlear cambios de tamaño
-	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-	// Handlear input cursor
-	glfwSetCursorPosCallback(window, processMouse);
-	// Ocultar cursor
-	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-
-	// Cargar GLAD
-	gladLoadGL();
-
-	// Especificar el viewport
-	glViewport(0, 0, windowSettings.width, windowSettings.height);
-
 	// glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	glEnable(GL_DEPTH_TEST);
 
@@ -212,7 +174,7 @@ int main() {
 	glClearColor(0.0, 0.0, 0.5, 1.0);
 
 	glm::mat4 projection = glm::mat4(1.0f);
-	projection = glm::perspective(glm::radians(80.0f), windowSettings.GetAspectRatio(), 0.1f, 100.0f);
+	projection = glm::perspective(glm::radians(80.0f), windowManager.GetAspectRatio(), 0.1f, 100.0f);
 
 	camera.SetPosition(glm::vec3(0.0f, 0.0f, -3.0f));
 
@@ -250,11 +212,10 @@ int main() {
 
 		for (glm::vec3 pos : cubePositions) {
 			float rotation = 45.0f * static_cast<float>(glfwGetTime()) * 0.001f;
-			rotation = 0.0f;
 
 			glm::mat4 model = glm::mat4(1.0f);
 			model = glm::translate(model, pos);
-			model = glm::rotate(model, /*glm::degrees(rotation + pos.x)*/ 0.0f, glm::vec3(0.3f, 1.0f, 0.0f));
+			model = glm::rotate(model, glm::degrees(rotation + pos.x), glm::vec3(0.3f, 1.0f, 0.0f));
 
 			shaderTextura.setMat4("transform", (projection * camera.GetView() * model));
 
@@ -264,11 +225,6 @@ int main() {
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
-
-	// Eliminar ventana antes de terminar
-	glfwDestroyWindow(window);
-	// Terminar OpenGL
-	glfwTerminate();
 
 
 	return 0;
