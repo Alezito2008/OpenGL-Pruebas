@@ -26,8 +26,7 @@ public:
 	GLFWwindow* GetWindow() const;
 	const WindowSettings& GetSettings() const;
 
-	void SwapBuffers();
-	void PollEvents();
+	void PollEventsAndSwapBuffers();
 	void SetDimensions(int width, int height);
 	float GetAspectRatio() const;
 };

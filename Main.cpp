@@ -16,11 +16,7 @@
 #include "InputManager.h"
 #include "Texture.h"
 
-WindowSettings windowSettings = {
-	"OpenGL",
-	1500,
-	1000
-};
+WindowSettings windowSettings("OpenGL", 1500, 1000);
 
 WindowManager windowManager(windowSettings);
 GLFWwindow* window = windowManager.GetWindow();
@@ -222,8 +218,7 @@ int main() {
 			renderer.Draw(cubeVA, shaderTextura, 36);
 		}
 
-		glfwSwapBuffers(window);
-		glfwPollEvents();
+		windowManager.PollEventsAndSwapBuffers();
 	}
 
 

@@ -66,6 +66,12 @@ const WindowSettings& WindowManager::GetSettings() const
 	return m_windowSettings;
 }
 
+void WindowManager::PollEventsAndSwapBuffers()
+{
+	glfwSwapBuffers(m_window);
+	glfwPollEvents();
+}
+
 void WindowManager::SetDimensions(int width, int height)
 {
 	m_windowSettings.width = width;
