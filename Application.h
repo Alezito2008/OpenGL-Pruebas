@@ -22,7 +22,6 @@ protected:
 	inline const InputManager& GetInputManager() const { return m_inputManager; }
 	inline const WindowManager& GetWindowManager() const { return m_windowManager; }
 	inline const Renderer& GetRenderer() const { return m_renderer; }
-	inline const InputManager& GetInputManager() const { return m_inputManager; }
 
 	WindowManager m_windowManager;
 	GLFWwindow* m_window;

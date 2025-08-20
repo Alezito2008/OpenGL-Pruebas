@@ -40,6 +40,7 @@ public:
 
 	float GetAspectRatio() const;
 	bool GetWindowShouldClose() const;
+	inline const WindowSettings& GetWindowsSettings() { return m_windowSettings; }
 	CursorMode GetCursorMode() const;
 };
 
