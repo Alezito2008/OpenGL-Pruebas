@@ -29,12 +29,12 @@ public:
 	inline GLFWwindow* GetWindow() const { return m_window; };
 	const WindowSettings& GetSettings() const;
 
-	using CursorPosHandler = std::function<void(double, double)>;
+	using CursorPosCallback = std::function<void(double, double)>;
 
 	void PollEventsAndSwapBuffers();
 	void SetDimensions(int width, int height);
 	void SetCursorMode(CursorMode mode);
-	void SetCursorPosHandler(CursorPosHandler handler);
+	void SetCursorPosCallback(CursorPosCallback handler);
 	void CloseWindow();
 
 	float GetAspectRatio() const;
@@ -48,6 +48,6 @@ private:
 	static void FrameBufferSizeCallback(GLFWwindow* window, int width, int height);
 	static void CursorPosCallbackInternal(GLFWwindow* window, double posX, double posY);
 
-	CursorPosHandler m_cursorPosHandler = nullptr;
+	CursorPosCallback m_cursorPosCallback = nullptr;
 };
 

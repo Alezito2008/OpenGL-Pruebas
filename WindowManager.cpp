@@ -53,8 +53,6 @@ WindowManager::WindowManager(const WindowSettings& settings) : m_windowSettings(
 
 	// Handlear cambios de tamaño
 	glfwSetFramebufferSizeCallback(m_window, FrameBufferSizeCallback);
-	// Handlear input cursor
-	//glfwSetCursorPosCallback(m_window, processMouse);
 }
 
 WindowManager::~WindowManager()

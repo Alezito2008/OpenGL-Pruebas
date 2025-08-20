@@ -171,7 +171,7 @@ int main() {
 
 	glClearColor(0.0, 0.0, 0.5, 1.0);
 
-	windowManager.SetCursorPosHandler(processMouse);
+	windowManager.SetCursorPosCallback(processMouse);
 
 	glm::mat4 projection = glm::mat4(1.0f);
 	projection = glm::perspective(glm::radians(80.0f), windowManager.GetAspectRatio(), 0.1f, 100.0f);
