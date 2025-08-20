@@ -36,7 +36,10 @@ WindowManager::WindowManager(const WindowSettings& settings) : m_windowSettings(
 	glfwSetWindowUserPointer(m_window, this);
 	glfwMakeContextCurrent(m_window);
 
-	gladLoadGL();
+	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+		std::cout << "Erro al inicializar GLAD" << std::endl;
+		std::exit(-1);
+	}
 
 	glViewport(0, 0, m_windowSettings.width, m_windowSettings.height);
 
@@ -44,8 +47,6 @@ WindowManager::WindowManager(const WindowSettings& settings) : m_windowSettings(
 	glfwSetFramebufferSizeCallback(m_window, FrameBufferSizeCallback);
 	// Handlear input cursor
 	//glfwSetCursorPosCallback(m_window, processMouse);
-	// Ocultar cursor
-	glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 }
 
 WindowManager::~WindowManager()
@@ -54,11 +55,6 @@ WindowManager::~WindowManager()
 	glfwDestroyWindow(m_window);
 	// Terminar OpenGL
 	glfwTerminate();
-}
-
-GLFWwindow* WindowManager::GetWindow() const
-{
-	return m_window;
 }
 
 const WindowSettings& WindowManager::GetSettings() const
@@ -79,7 +75,28 @@ void WindowManager::SetDimensions(int width, int height)
 	glViewport(0, 0, width, height);
 }
 
+void WindowManager::SetCursorMode(CursorMode mode)
+{
+	glfwSetInputMode(m_window, GLFW_CURSOR, static_cast<int>(mode));
+}
+
+void WindowManager::CloseWindow()
+{
+	glfwSetWindowShouldClose(m_window, true);
+}
+
 float WindowManager::GetAspectRatio() const
 {
 	return static_cast<float>(m_windowSettings.width) / m_windowSettings.height;
+}
+
+bool WindowManager::GetWindowShouldClose() const
+{
+	return glfwWindowShouldClose(m_window);
+}
+
+CursorMode WindowManager::GetCursorMode() const
+{
+	int mode = glfwGetInputMode(m_window, GLFW_CURSOR);
+	return static_cast<CursorMode>(mode);
 }

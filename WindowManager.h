@@ -12,6 +12,13 @@ struct WindowSettings {
 		: name(name), width(width), height(height) {};
 };
 
+
+enum class CursorMode {
+	Normal = GLFW_CURSOR_NORMAL,
+	Hidden = GLFW_CURSOR_HIDDEN,
+	Disabled = GLFW_CURSOR_DISABLED
+};
+
 class WindowManager
 {
 private:
@@ -23,11 +30,16 @@ public:
 	WindowManager(const WindowSettings& settings);
 	~WindowManager();
 
-	GLFWwindow* GetWindow() const;
+	inline GLFWwindow* GetWindow() const { return m_window; };
 	const WindowSettings& GetSettings() const;
 
 	void PollEventsAndSwapBuffers();
 	void SetDimensions(int width, int height);
+	void SetCursorMode(CursorMode mode);
+	void CloseWindow();
+
 	float GetAspectRatio() const;
+	bool GetWindowShouldClose() const;
+	CursorMode GetCursorMode() const;
 };
 

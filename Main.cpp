@@ -131,6 +131,8 @@ int main() {
 	};
 
 
+	windowManager.SetCursorMode(CursorMode::Disabled);
+
 	// -- Parte de las texturas --
 
 	Texture containerTexture("container.jpg");
