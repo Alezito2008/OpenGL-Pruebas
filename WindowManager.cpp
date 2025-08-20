@@ -11,6 +11,14 @@ void WindowManager::FrameBufferSizeCallback(GLFWwindow* window, int width, int h
 	glViewport(0, 0, width, height);
 }
 
+void WindowManager::CursorPosCallbackInternal(GLFWwindow* window, double posX, double posY)
+{
+	WindowManager* wm = static_cast<WindowManager*>(glfwGetWindowUserPointer(window));
+	if (wm && wm->m_cursorPosHandler) {
+		wm->m_cursorPosHandler(posX, posY);
+	}
+}
+
 WindowManager::WindowManager(const WindowSettings& settings) : m_windowSettings(settings)
 {
 
@@ -78,6 +86,12 @@ void WindowManager::SetDimensions(int width, int height)
 void WindowManager::SetCursorMode(CursorMode mode)
 {
 	glfwSetInputMode(m_window, GLFW_CURSOR, static_cast<int>(mode));
+}
+
+void WindowManager::SetCursorPosHandler(CursorPosHandler handler)
+{
+	m_cursorPosHandler = handler;
+	glfwSetCursorPosCallback(m_window, CursorPosCallbackInternal);
 }
 
 void WindowManager::CloseWindow()
