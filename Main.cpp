@@ -15,6 +15,7 @@
 #include "Camera.h"
 #include "InputManager.h"
 #include "Texture.h"
+#include "MeshData.h"
 
 WindowSettings windowSettings("OpenGL", 1500, 1000);
 
@@ -57,109 +58,32 @@ int main() {
 	// glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	glEnable(GL_DEPTH_TEST);
 
-	// -- Creación de shaders -- //
+	// ###########
+	// # SHADERS #
+	// ###########
 
-	Shader shaderTextura = Shader("texture.vert", "texture.frag");
+	Shader shaderTextura("texture.vert", "texture.frag");
+	Shader shaderDefault("default.vert", "default.frag");
 
-	float vertices[] = {
-		-0.5f, -0.5f, /* abajo izquierda */ 0.0f, 0.0f,
-		0.5f, -0.5f, /* abajo derecha* */ 1.0f, 0.0f,
-		0.5f, 0.5f, /* arriba derecha */ 1.0f, 1.0f,
-		-0.5f, 0.5f, /* arriba izquierda */ 0.0f, 1.0f
-	};
-
-	unsigned int indices[] = {
-		0, 1, 2, // primer triangulo (arriba derecha)
-		2, 3, 0, // segundo triangulo (abajo izquierda)
-	};
-
-	float cubeVertices[] = {
-	-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-	 0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
-	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-	-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-	-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-
-	-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-	 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-	-0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
-	-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-
-	-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-	-0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-	-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-	-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-	-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-	-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-
-	 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-	 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-	 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-	 0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-
-	-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-	 0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
-	 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-	 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-	-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-	-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-
-	-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-	-0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
-	-0.5f,  0.5f, -0.5f,  0.0f, 1.0f
-	};
-
-	glm::vec3 cubePositions[] = {
-	glm::vec3(0.0f,  0.0f,  0.0f),
-	glm::vec3(2.0f,  5.0f, -15.0f),
-	glm::vec3(-1.5f, -2.2f, -2.5f),
-	glm::vec3(-3.8f, -2.0f, -12.3f),
-	glm::vec3(2.4f, -0.4f, -3.5f),
-	glm::vec3(-1.7f,  3.0f, -7.5f),
-	glm::vec3(1.3f, -2.0f, -2.5f),
-	glm::vec3(1.5f,  2.0f, -2.5f),
-	glm::vec3(1.5f,  0.2f, -1.5f),
-	glm::vec3(-1.3f,  1.0f, -1.5f)
-	};
-
-
-	windowManager.SetCursorMode(CursorMode::Disabled);
-
-	// -- Parte de las texturas --
 
 	Texture containerTexture("container.jpg");
 	Texture faceTexture("awesomeface.png");
-
-	// -- Elementos --
 
 	Renderer renderer;
 	Camera camera;
 	InputManager inputManager(window);
 
-	VertexArray va;
-	va.Bind();
-	VertexBuffer VBO(vertices, sizeof(vertices));
-	IndexBuffer EBO(indices, 6);
-	VertexBufferLayout layout;
-	layout.Push<float>(2, false);
-	layout.Push<float>(2, false);
-	va.AddBuffer(VBO, layout);
+	// ##########
+	// # MESHES #
+	// ##########
 
+	// Cubo container
 	VertexArray cubeVA;
-	VertexBuffer cubeVBO(cubeVertices, sizeof(cubeVertices));
+	VertexBuffer cubeVBO(MeshData::cubeVertices, sizeof(MeshData::cubeVertices));
 	VertexBufferLayout cubeLayout;
 	cubeLayout.Push<float>(3, false); // posiciones
 	cubeLayout.Push<float>(2, false); // UV
 	cubeVA.AddBuffer(cubeVBO, cubeLayout);
-
 
 	shaderTextura.Bind();
 
@@ -169,14 +93,30 @@ int main() {
 	containerTexture.Bind();
 	faceTexture.Bind(1);
 
+	// Light Source
+	VertexArray lightVA;
+	VertexBuffer lightVBO(MeshData::cubeVertices, sizeof(MeshData::cubeVertices));
+	VertexBufferLayout lightLayout;
+	lightLayout.Push<float>(3, false); // posiciones
+	lightLayout.Push<float>(2, false); // UV (no lo voy a usar para esto)
+	lightVA.AddBuffer(lightVBO, lightLayout);
+
 	glClearColor(0.0, 0.0, 0.5, 1.0);
 
+	windowManager.SetCursorMode(CursorMode::Disabled);
 	windowManager.SetCursorPosCallback(processMouse);
 
 	glm::mat4 projection = glm::mat4(1.0f);
 	projection = glm::perspective(glm::radians(80.0f), windowManager.GetAspectRatio(), 0.1f, 100.0f);
 
 	camera.SetPosition(glm::vec3(0.0f, 0.0f, -3.0f));
+
+	// ###############
+	// # ILUMINACION #
+	// ###############
+
+	glm::vec3 lightColor(1.0f, 1.0f, 1.0f);
+	glm::vec3 cubeColor(1.0f, 0.5f, 0.31f);
 
 	while (!glfwWindowShouldClose(window)) {
 		processInput(window);
@@ -210,7 +150,7 @@ int main() {
 			camera.Move(direction * cameraSpeed);
 		}
 
-		for (glm::vec3 pos : cubePositions) {
+		for (glm::vec3 pos : MeshData::cubePositions) {
 			float rotation = 45.0f * static_cast<float>(glfwGetTime()) * 0.001f;
 
 			glm::mat4 model = glm::mat4(1.0f);
@@ -221,6 +161,12 @@ int main() {
 
 			renderer.Draw(cubeVA, shaderTextura, 36);
 		}
+
+		glm::mat4 lightTransform(-1.0);
+		lightTransform = glm::translate(lightTransform, glm::vec3(1.0f));
+		lightTransform = glm::scale(lightTransform, glm::vec3(0.5f));
+		shaderDefault.setMat4("transform", (projection * camera.GetView() * lightTransform));
+		renderer.Draw(lightVA, shaderDefault, 36);
 
 		windowManager.PollEventsAndSwapBuffers();
 	}

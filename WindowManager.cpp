@@ -14,8 +14,8 @@ void WindowManager::FrameBufferSizeCallback(GLFWwindow* window, int width, int h
 void WindowManager::CursorPosCallbackInternal(GLFWwindow* window, double posX, double posY)
 {
 	WindowManager* wm = static_cast<WindowManager*>(glfwGetWindowUserPointer(window));
-	if (wm && wm->m_cursorPosHandler) {
-		wm->m_cursorPosHandler(posX, posY);
+	if (wm && wm->m_cursorPosCallback) {
+		wm->m_cursorPosCallback(posX, posY);
 	}
 }
 
@@ -86,9 +86,9 @@ void WindowManager::SetCursorMode(CursorMode mode)
 	glfwSetInputMode(m_window, GLFW_CURSOR, static_cast<int>(mode));
 }
 
-void WindowManager::SetCursorPosHandler(CursorPosHandler handler)
+void WindowManager::SetCursorPosCallback(CursorPosCallback handler)
 {
-	m_cursorPosHandler = handler;
+	m_cursorPosCallback = handler;
 	glfwSetCursorPosCallback(m_window, CursorPosCallbackInternal);
 }
 
