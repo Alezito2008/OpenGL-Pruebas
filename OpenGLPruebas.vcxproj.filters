@@ -133,5 +133,6 @@
     <None Include="triangle2.frag">
       <Filter>res\shaders</Filter>
     </None>
+    <None Include="light.frag" />
   </ItemGroup>
 </Project>

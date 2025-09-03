@@ -64,6 +64,7 @@ int main() {
 
 	Shader shaderTextura("texture.vert", "texture.frag");
 	Shader shaderDefault("default.vert", "default.frag");
+	Shader shaderLight("default.vert", "light.frag");
 
 
 	Texture containerTexture("container.jpg");
@@ -83,6 +84,7 @@ int main() {
 	VertexBufferLayout cubeLayout;
 	cubeLayout.Push<float>(3, false); // posiciones
 	cubeLayout.Push<float>(2, false); // UV
+	cubeLayout.Push<float>(1, false); // Normal
 	cubeVA.AddBuffer(cubeVBO, cubeLayout);
 
 	shaderTextura.Bind();
@@ -99,6 +101,7 @@ int main() {
 	VertexBufferLayout lightLayout;
 	lightLayout.Push<float>(3, false); // posiciones
 	lightLayout.Push<float>(2, false); // UV (no lo voy a usar para esto)
+	lightLayout.Push<float>(1, false); // Normal
 	lightVA.AddBuffer(lightVBO, lightLayout);
 
 	glClearColor(0.0, 0.0, 0.5, 1.0);
@@ -116,7 +119,7 @@ int main() {
 	// ###############
 
 	glm::vec3 lightColor(1.0f, 1.0f, 1.0f);
-	glm::vec3 cubeColor(1.0f, 0.5f, 0.31f);
+	glm::vec3 lightPos(0.0f, -15.0f, 0.0f);
 
 	while (!glfwWindowShouldClose(window)) {
 		processInput(window);
@@ -150,6 +153,11 @@ int main() {
 			camera.Move(direction * cameraSpeed);
 		}
 
+		glm::mat4 view = camera.GetView();
+		glm::vec3 viewPos = camera.GetPosition();
+
+		shaderDefault.Bind();
+
 		for (glm::vec3 pos : MeshData::cubePositions) {
 			float rotation = 45.0f * static_cast<float>(glfwGetTime()) * 0.001f;
 
@@ -157,16 +165,29 @@ int main() {
 			model = glm::translate(model, pos);
 			model = glm::rotate(model, glm::degrees(rotation + pos.x), glm::vec3(0.3f, 1.0f, 0.0f));
 
-			shaderTextura.setMat4("transform", (projection * camera.GetView() * model));
+			shaderDefault.setVec3("lightPos", lightPos);
+			shaderDefault.setVec3("lightColor", lightColor);
+			shaderDefault.setVec3("objectColor", glm::vec3(1.0f, 0.5f, 0.0f));
+			shaderDefault.setVec3("viewPos", viewPos);
+			shaderDefault.setMat4("model", model);
+			shaderDefault.setMat4("view", view);
+			shaderDefault.setMat4("projection", projection);
 
-			renderer.Draw(cubeVA, shaderTextura, 36);
+			renderer.Draw(cubeVA, shaderDefault, 36);
 		}
 
-		glm::mat4 lightTransform(-1.0);
-		lightTransform = glm::translate(lightTransform, glm::vec3(1.0f));
+		shaderLight.Bind();
+
+		glm::mat4 lightTransform(1.0);
+		lightTransform = glm::translate(lightTransform, lightPos);
 		lightTransform = glm::scale(lightTransform, glm::vec3(0.5f));
-		shaderDefault.setMat4("transform", (projection * camera.GetView() * lightTransform));
-		renderer.Draw(lightVA, shaderDefault, 36);
+
+		shaderLight.setMat4("transform", (projection * camera.GetView() * lightTransform));
+		shaderDefault.setMat4("model", lightTransform);
+		shaderDefault.setMat4("view", view);
+		shaderDefault.setMat4("projection", projection);
+
+		renderer.Draw(lightVA, shaderLight, 36);
 
 		windowManager.PollEventsAndSwapBuffers();
 	}

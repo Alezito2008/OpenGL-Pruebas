@@ -171,6 +171,7 @@
   <ItemGroup>
     <None Include="default.frag" />
     <None Include="default.vert" />
+    <None Include="light.frag" />
     <None Include="texture.frag" />
     <None Include="texture.vert" />
     <None Include="triangle1.frag" />
