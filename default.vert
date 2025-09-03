@@ -7,10 +7,17 @@ out vec3 FragPos;
 out vec3 Normal;
 
 uniform mat3 normalMatrix;
-uniform mat4 model, view, projection;
+
+struct MVP {
+	mat4 model;
+	mat4 view;
+	mat4 projection;
+};
+
+uniform MVP mvp;
 
 void main() {
-	gl_Position = projection * view * model * vec4(aPos, 1.0);
-	FragPos = vec3(model * vec4(aPos, 1.0));
+	gl_Position = mvp.projection * mvp.view * mvp.model * vec4(aPos, 1.0);
+	FragPos = vec3(mvp.model * vec4(aPos, 1.0));
 	Normal = normalMatrix * aNormal;
 }

@@ -160,7 +160,6 @@ int main() {
 
 		for (glm::vec3 pos : MeshData::cubePositions) {
 			float rotation = 45.0f * static_cast<float>(glfwGetTime()) * 0.001f;
-			rotation = 0;
 
 			glm::mat4 model = glm::mat4(1.0f);
 			model = glm::translate(model, pos);
@@ -170,9 +169,7 @@ int main() {
 			shaderDefault.setVec3("lightColor", lightColor);
 			shaderDefault.setVec3("objectColor", glm::vec3(1.0f, 0.5f, 0.0f));
 			shaderDefault.setVec3("viewPos", viewPos);
-			shaderDefault.setMat4("model", model);
-			shaderDefault.setMat4("view", view);
-			shaderDefault.setMat4("projection", projection);
+			shaderDefault.setMVP(model, view, projection);
 			shaderDefault.SetNormalMatrix(model);
 
 			renderer.Draw(cubeVA, shaderDefault, 36);
@@ -184,10 +181,7 @@ int main() {
 		lightTransform = glm::translate(lightTransform, lightPos);
 		lightTransform = glm::scale(lightTransform, glm::vec3(0.5f));
 
-		shaderLight.setMat4("transform", (projection * camera.GetView() * lightTransform));
-		shaderDefault.setMat4("model", lightTransform);
-		shaderDefault.setMat4("view", view);
-		shaderDefault.setMat4("projection", projection);
+		shaderDefault.setMVP(lightTransform, view, projection);
 
 		renderer.Draw(lightVA, shaderLight, 36);
 
