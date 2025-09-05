@@ -102,6 +102,14 @@ unsigned int Shader::GetUniformLocation(const std::string& name) const
 	return location->second;
 }
 
+void Shader::SetMaterial(const Material& material) const
+{
+	setVec3("material.ambient", material.ambient);
+	setVec3("material.diffuse", material.diffuse);
+	setVec3("material.specular", material.specular);
+	setFloat("material.shininess", material.shininess);
+}
+
 void Shader::SetNormalMatrix(const glm::mat4& model)
 {
 	glm::mat3 normalMatrix = glm::transpose(glm::inverse(glm::mat3(model)));

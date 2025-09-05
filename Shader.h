@@ -7,6 +7,8 @@
 #include <glm/matrix.hpp>
 #include <unordered_map>
 
+#include "Material.h"
+
 class Shader
 {
 public:
@@ -16,6 +18,7 @@ public:
 	~Shader();
 	void Bind() const;
 	unsigned int GetUniformLocation(const std::string& name) const;
+	void SetMaterial(const Material& material) const;
 	void SetNormalMatrix(const glm::mat4& model);
 	void setBool(const std::string& name, bool value) const;
 	void setInt(const std::string& name, int value) const;

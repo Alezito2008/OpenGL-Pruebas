@@ -16,6 +16,7 @@
 #include "InputManager.h"
 #include "Texture.h"
 #include "MeshData.h"
+#include "Material.h"
 
 WindowSettings windowSettings("OpenGL", 1500, 1000);
 
@@ -57,6 +58,8 @@ static void processInput(GLFWwindow* window) {
 int main() {
 	// glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	glEnable(GL_DEPTH_TEST);
+	// glEnable(GL_CULL_FACE);
+	// glCullFace(GL_BACK);
 
 	// ###########
 	// # SHADERS #
@@ -158,11 +161,14 @@ int main() {
 
 		shaderDefault.Bind();
 
+		int i = 0;
 		for (glm::vec3 pos : MeshData::cubePositions) {
 			float rotation = 45.0f * static_cast<float>(glfwGetTime()) * 0.001f;
+			rotation = 0;
 
 			glm::mat4 model = glm::mat4(1.0f);
-			model = glm::translate(model, pos);
+			model = glm::translate(model, pos * 10.0f);
+			model = glm::scale(model, glm::vec3(10.0f));
 			model = glm::rotate(model, glm::degrees(rotation + pos.x), glm::vec3(0.3f, 1.0f, 0.0f));
 
 			shaderDefault.setVec3("lightPos", lightPos);
@@ -172,7 +178,21 @@ int main() {
 			shaderDefault.setMVP(model, view, projection);
 			shaderDefault.SetNormalMatrix(model);
 
+			Material matToUse;
+			switch (i % 3) {
+				case 0:
+					matToUse = DefaultMaterial::CYAN_PLASTIC; break;
+				case 1:
+					matToUse = DefaultMaterial::EMERALD; break;
+				case 2:
+					matToUse = DefaultMaterial::RED_RUBBER; break;
+			}
+
+			shaderDefault.SetMaterial(DefaultMaterial::TEST);
+
 			renderer.Draw(cubeVA, shaderDefault, 36);
+
+			++i;
 		}
 
 		shaderLight.Bind();
